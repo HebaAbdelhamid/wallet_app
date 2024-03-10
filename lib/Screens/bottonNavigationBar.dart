@@ -19,7 +19,7 @@ class Botton_Navigation_Bar extends StatefulWidget{
 class Botton_Navigation_State extends State<Botton_Navigation_Bar>{
   List<Widget> _buildScreens() {
     return [
-      Home('user',"100000"),
+      Home(0),
       Category_Chart(),
       AddExpensesPage_(),
       FuturePlanning(),

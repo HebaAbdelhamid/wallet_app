@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/screen/futureplanning.dart';
 
 class FuturePlanning extends StatefulWidget {
   @override
@@ -67,6 +68,9 @@ class _FuturePlanningState extends State<FuturePlanning> {
 
           InkWell(
               onTap: (){
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => futureplaningScreen()),
+                );
                 // Navigator.of(context).push(MaterialPageRoute(builder: (context){return Proadcast_Child();}));
               },
               child: Stack(

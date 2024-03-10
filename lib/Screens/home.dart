@@ -1,11 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:wallet_app/data/model/modell/incomeModel.dart';
+import 'package:wallet_app/screen/incomes.dart';
 
 import '../widgets/categories.dart';
 
 class Home extends StatefulWidget {
-  final String textt;
-  final String texttt;
-  Home(this.textt, this.texttt);
+  final int total;
+  Home(this.total);
+
+
+
+
+
+
 
   @override
   State<StatefulWidget> createState() {
@@ -14,6 +23,11 @@ class Home extends StatefulWidget {
 }
 
 class Home_State extends State<Home> {
+  late int totalIncome=0;
+  void initState() {
+totalIncome=widget.total;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +69,7 @@ class Home_State extends State<Home> {
                           style: TextStyle(fontSize: 17),
                         ),
                         Text(
-                          '${widget.textt}',
+                          ' ',
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.w500),
                         )
@@ -101,7 +115,7 @@ class Home_State extends State<Home> {
                     SizedBox(
                       height: 15,
                     ),
-                    Text('1000 EGP',
+                    Text('$totalIncome EGP',
                         style: TextStyle(
                             fontSize: 35, fontWeight: FontWeight.bold))
                   ],
@@ -115,29 +129,35 @@ class Home_State extends State<Home> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 18.0),
-                      child: Container(
-                        height: 110,
-                        width: 170,
-                        decoration: BoxDecoration(
-                            color: Color(0xffDBE7C9),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.download_sharp,
-                              color: Colors.green,
-                            ),
-                            const Text(
-                              'Incomes',
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            Text(
-                              '${widget.texttt}',
-                              style: TextStyle(fontSize: 20),
-                            )
-                          ],
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => IncomesScreen()));
+                        },
+                        child: Container(
+                          height: 110,
+                          width: 170,
+                          decoration: BoxDecoration(
+                              color: Color(0xffDBE7C9),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.download_sharp,
+                                color: Colors.green,
+                              ),
+                              const Text(
+                                'Incomes',
+                                style: TextStyle(fontSize: 22),
+                              ),
+                              Text(
+                                '${totalIncome} EGP',
+                                style: TextStyle(fontSize: 20),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -161,7 +181,7 @@ class Home_State extends State<Home> {
                             style: TextStyle(fontSize: 22),
                           ),
                           Text(
-                            '1000 EGP',
+                            '0 EGP',
                             style: TextStyle(fontSize: 20),
                           )
                         ],

@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:wallet_app/Screens/bottonNavigationBar.dart';
 import 'package:wallet_app/widgets/categories.dart';
@@ -13,7 +15,28 @@ class Register_Complete_State extends State<Register_Complete_> {
   TextEditingController _salaryTextEditingController = TextEditingController();
   TextEditingController _categorynameTextEditingController =
       TextEditingController();
+
   int count = 1;
+  void initState() {
+    super.initState();
+
+  }
+//XFile?image;
+  /*Future<void> pickImage(ImageSource source,int index) async {
+    final picker = ImagePicker();
+    final pickedfile = await picker.pickImage(source: source);
+    setState(() {
+      if (pickedfile != null) {
+        File _imageFile = File(pickedfile.path,);
+        String imageName=pickedfile.path.split('/').last;
+
+
+      } else {
+        print('No image selected.');
+      }
+    });
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,29 +174,32 @@ class Register_Complete_State extends State<Register_Complete_> {
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 4.0, bottom: 4),
-                                  child: Container(
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.grey[
-                                          200], // Set the background color
-                                      border: Border.all(
-                                          color: Color(
-                                              0xFF294B29)), // Set the border color
-                                    ),
-                                    child:  Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 4, horizontal: 7),
-                                      child: Row(
-                                        children: [
-                                          Text('Upload Image'),
-                                          Expanded(child: SizedBox()),
-                                          Icon(Icons.upload)
-                                          // Add additional widgets as needed
-                                        ],
+                                  child:
+
+                                  InkWell(
+                                    onTap: (){
+                                   //   pickImage(ImageSource.gallery, 1);
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.grey[200],
+                                        border: Border.all(color: Color(0xFF294B29)),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 7),
+                                        child: Row(
+                                          children: [
+                                            Text('Upload Image'),
+                                            Expanded(child: SizedBox()),
+                                            Icon(Icons.upload),
+
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  )
                                 ),
                               ],
                             ),
