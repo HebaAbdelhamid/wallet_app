@@ -6,13 +6,13 @@ class ApiDioServises {
 
   static final ApiDioServises api = ApiDioServises._();
 
-  Future<Category> fetchNewsData(String category, String authToken) async {
+  Future<Category_> fetchNewsData(String category, String authToken) async {
     Dio dio = DioConfig.getDio(authToken);
     String url = "user/allCategories";
     Response response = await dio.get(url);
 
     if (response.statusCode == 200) {
-      return Category.fromJson(response.data);
+      return Category_.fromJson(response.data);
     } else {
       throw Exception();
     }

@@ -1,11 +1,11 @@
 
-class Category {
+class Category_ {
   String? message;
   List<UserCategories>? userCategories;
 
-  Category({this.message, this.userCategories});
+  Category_({this.message, this.userCategories});
 
-  Category.fromJson(Map<String, dynamic> json) {
+  Category_.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     if (json['userCategories'] != null) {
       userCategories = <UserCategories>[];

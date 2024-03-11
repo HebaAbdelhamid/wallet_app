@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_app/Screens/eachCategory_chart.dart';
 import 'package:wallet_app/Screens/login.dart';
 import 'package:wallet_app/Screens/register.dart';
 import 'package:wallet_app/cubit/login_cubit.dart';

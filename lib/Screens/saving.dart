@@ -71,7 +71,6 @@ class _FuturePlanningState extends State<FuturePlanning> {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => futureplaningScreen()),
                 );
-                // Navigator.of(context).push(MaterialPageRoute(builder: (context){return Proadcast_Child();}));
               },
               child: Stack(
                   alignment: Alignment.center,

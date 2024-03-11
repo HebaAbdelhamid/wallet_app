@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/screen/expense.dart';
 import 'package:wallet_app/widgets/categories.dart';
 
 class AddExpensesPage_ extends StatefulWidget {
@@ -148,7 +149,7 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                       labelText: 'Enter Cost'),
                 ),
               ),
-              CheckboxListTile(
+              /*CheckboxListTile(
                 title: Text(
                   'Add to Red flags?',
                   style: TextStyle(fontSize: 20),
@@ -159,7 +160,7 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                     _addToRedFlags = value!;
                   });
                 },
-              ),
+              ),*/
               Center(
                 child: TextButton(
                     onPressed: () {
@@ -317,6 +318,8 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                       print("Description: ${_descriptionController.text}");
                       print("Cost: ${_costController.text}");
                       // Navigator.of(context).push( MaterialPageRoute(builder: (context){return Register_Complete();}));
+                      Navigator.of(context).push( MaterialPageRoute(builder: (context){return ExpensiveScreen(category: categories.first,);}));
+
                     },
                     padding: const EdgeInsets.only(right: 4, left: 4),
                     child: const Text(

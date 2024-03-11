@@ -44,6 +44,7 @@ dependencies:
   flutter_bloc:
   shared_preferences:
   lottie:
+  intl:
 
 
 dev_dependencies:

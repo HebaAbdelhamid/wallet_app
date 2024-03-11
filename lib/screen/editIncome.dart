@@ -40,7 +40,7 @@ class _EditIncomeScreenState extends State<EditIncomeScreen> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () {
             Navigator.pop(context);
           },

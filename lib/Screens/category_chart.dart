@@ -58,10 +58,10 @@ List<String>_category=[ "Food & Drinks","Recycling","Tickets","Shopping"];
       colorList: colorList,
       initialAngleInDegree: 0,
       chartType: ChartType.ring,
-      centerText: _showCenterText ? "HYBRID" : null,
+      centerText: _showCenterText ? "   " : null,
       centerWidget: _showCenterWidget
           ? Container(
-          color: Colors.white, child: const Text("10000000 EGP",style: TextStyle(fontWeight: FontWeight.w500),))
+          color: Colors.white, child: const Text("       ",style: TextStyle(fontWeight: FontWeight.w500),))
           : null,
       chartValuesOptions: ChartValuesOptions(
         showChartValueBackground: true,
@@ -102,26 +102,12 @@ List<String>_category=[ "Food & Drinks","Recycling","Tickets","Shopping"];
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.arrow_drop_down,color: Colors.purple,),
-                          Text('Month'),
+                          Text('Daily'),
                         ],
                       ),
                     ),
                     Expanded(child: SizedBox()),
-                    Container(
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),border: Border.all(
-                        color: Colors.grey,
-                      ),color: Colors.white),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.flag,color: Colors.red,),
-                          Text('red flags'),
-                        ],
-                      ),
-                    ),
+
                   ],
                 ),
                 Padding(
@@ -211,7 +197,7 @@ List<String>_category=[ "Food & Drinks","Recycling","Tickets","Shopping"];
                           child: Text(_category[index]),
                         ),
                         Expanded(child: SizedBox()),
-                        Text('${_slidersValue[index]*100}EGP'),
+                        Text('${_slidersValue[index]}EGP'),
                       ],
                     ),
                     SizedBox(height: 7),

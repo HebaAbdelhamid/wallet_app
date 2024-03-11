@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/model/categoryModel.dart';
 import 'package:wallet_app/dio/ApiDioServices.dart';
+import 'package:wallet_app/widgets/categories.dart';
 
 class MyApp_ extends StatelessWidget {
   @override
@@ -25,7 +26,7 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
   @override
   void initState() {
     super.initState();
-    futureCategories = ApiDioServises.api.fetchNewsData("all",authToken);
+    futureCategories = ApiDioServises.api.fetchNewsData("all",authToken) as Future<Category>;
   }
 
   @override
@@ -42,14 +43,14 @@ class _CategoryListWidgetState extends State<CategoryListWidget> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            List<UserCategories>? categories = snapshot.data?.userCategories;
+            //List<UserCategories>? categories = snapshot.data?.userCategories;
 
             return ListView.builder(
               itemCount: categories?.length ?? 0,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(categories?[index].categoryName ?? 'No Name'),
-                  leading: Image.network(categories?[index].categoryPic ?? 'No Image'),
+                  title: Text('categories?[index].categoryName ?? No Name'),
+                  leading: Image.network('categories?[index].categoryPic ?? No Image'),
                 );
               },
             );

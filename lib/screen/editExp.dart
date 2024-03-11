@@ -1,31 +1,35 @@
-import 'package:flutter/material.dart';
-import 'package:wallet_app/Services/updatefutureplaing.dart';
-
-
 import 'dart:async';
 
-import 'package:wallet_app/data/model/modell/incomeModel.dart';
+import 'package:flutter/material.dart';
+import 'package:wallet_app/Services/PutExpen.dart';
+import 'package:wallet_app/data/model/modell/expensesmodel.dart';
 
-class EditfutureplaningScreen extends StatefulWidget {
-  final IncomeModel income;
-  final StreamController<IncomeModel> futureplaningController;
+class EditExpenseScreen extends StatefulWidget {
+  final Expense expense;
+  final StreamController<Expense> expenseController;
+  final Function refreshExpenses; // Function to refresh expenses
+  final String subCategoryId; // Sub-category ID
 
-  const EditfutureplaningScreen({required this.income,  required this.futureplaningController});
+  const EditExpenseScreen({
+    required this.expense,
+    required this.expenseController,
+    required this.refreshExpenses,
+    required this.subCategoryId,
+  });
 
   @override
-  _EditfutureplaningScreenState createState() => _EditfutureplaningScreenState();
+  _EditExpenseScreenState createState() => _EditExpenseScreenState();
 }
 
-class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
+class _EditExpenseScreenState extends State<EditExpenseScreen> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController costController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // Set initial values for text fields based on the provided income model
-    descriptionController.text = widget.income.title ?? '';
-    costController.text = widget.income.cost?.toString() ?? '';
+    descriptionController.text = widget.expense.description ?? '';
+    costController.text = widget.expense.amount?.toString() ?? '';
   }
 
   @override
@@ -80,34 +84,43 @@ class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
-                  // Extract data from text fields
-                  final title = descriptionController.text;
-                  final cost = int.tryParse(costController.text) ?? 0;
+                  final description = descriptionController.text;
+                  final amount = int.tryParse(costController.text) ?? 0;
 
                   try {
-                    // Call the updateData method to send a PUT request
-                    await UpdateIncome().updateData(widget.income.sId ?? '', title, cost);
+                    await UpdateExpense().updateExpense(
+                      expenseId: widget.expense.id,
+                      description: description,
+                      amount: amount,
+                    );
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('future planing updated successfully'),
+                        content: Text('Expense updated successfully'),
                       ),
                     );
-                    // Update the income object with the new values
-                    widget.income.title = title;
-                    widget.income.cost = cost;
-                    // Emit the updated income object through the stream controller
-                    widget.futureplaningController.add(widget.income);
+                    final updatedExpense = Expense(
+                      id: widget.expense.id,
+                      userId: widget.expense.userId,
+                      categoryId: widget.expense.categoryId,
+                      description: description,
+                      amount: amount,
+                      createdAt: widget.expense.createdAt,
+                      updatedAt: widget.expense.updatedAt,
+                    );
+                    widget.expenseController.add(updatedExpense);
+                    widget.refreshExpenses(
+                        widget.subCategoryId); // Refresh expenses after update
                     Navigator.pop(context, true);
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Failed to update income: $e'),
+                        content: Text('Failed to update expense: $e'),
                       ),
                     );
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF294B29),
+                  backgroundColor: Color(0xFF294B29),
                   minimumSize: Size(200, 60),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

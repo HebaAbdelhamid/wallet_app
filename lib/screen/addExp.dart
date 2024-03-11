@@ -1,32 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_app/Services/updatefutureplaing.dart';
+import 'package:wallet_app/Services/PostExpense.dart';
 
 
-import 'dart:async';
-
-import 'package:wallet_app/data/model/modell/incomeModel.dart';
-
-class EditfutureplaningScreen extends StatefulWidget {
-  final IncomeModel income;
-  final StreamController<IncomeModel> futureplaningController;
-
-  const EditfutureplaningScreen({required this.income,  required this.futureplaningController});
-
-  @override
-  _EditfutureplaningScreenState createState() => _EditfutureplaningScreenState();
-}
-
-class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
+class AddExpensiveScreen extends StatelessWidget {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController costController = TextEditingController();
+  final Function refreshExpenses; // Function to refresh expenses
+  final String categoryId; // Category ID
 
-  @override
-  void initState() {
-    super.initState();
-    // Set initial values for text fields based on the provided income model
-    descriptionController.text = widget.income.title ?? '';
-    costController.text = widget.income.cost?.toString() ?? '';
-  }
+  final AddExpense addExpenseService = AddExpense();
+
+  AddExpensiveScreen({required this.refreshExpenses, required this.categoryId});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +20,7 @@ class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Edit',
+          'Add ',
           style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
         ),
         leading: IconButton(
@@ -75,46 +59,34 @@ class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 70),
+            SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
-                  // Extract data from text fields
-                  final title = descriptionController.text;
-                  final cost = int.tryParse(costController.text) ?? 0;
-
                   try {
-                    // Call the updateData method to send a PUT request
-                    await UpdateIncome().updateData(widget.income.sId ?? '', title, cost);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('future planing updated successfully'),
-                      ),
+                    await addExpenseService.addExpense(
+                      userId: '65e77dfc1c4a15ae7c2056d6',
+                      categoryId: categoryId, // Use the provided category ID
+                      description: descriptionController.text,
+                      amount: int.tryParse(costController.text) ?? 0,
                     );
-                    // Update the income object with the new values
-                    widget.income.title = title;
-                    widget.income.cost = cost;
-                    // Emit the updated income object through the stream controller
-                    widget.futureplaningController.add(widget.income);
-                    Navigator.pop(context, true);
+                    refreshExpenses(
+                        categoryId); // Refresh expenses after adding
+                    Navigator.pop(context);
                   } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Failed to update income: $e'),
-                      ),
-                    );
+                    print('Failed to add expense: $e');
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF294B29),
+                  backgroundColor: Color(0xFF294B29),
                   minimumSize: Size(200, 60),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 child: Text(
-                  'Update',
+                  'Save',
                   style: TextStyle(color: Colors.white),
                 ),
               ),

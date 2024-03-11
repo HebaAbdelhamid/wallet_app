@@ -48,10 +48,10 @@ class Income_ChartState extends State<Income_Chart> {
       colorList: colorList,
       initialAngleInDegree: 0,
       chartType: ChartType.ring,
-      centerText: _showCenterText ? "HYBRID" : null,
+      centerText: _showCenterText ? "       " : null,
       centerWidget: _showCenterWidget
           ? Container(
-          color: Colors.white, child: const Text("4000000 EGP",style: TextStyle(fontWeight: FontWeight.w500),))
+          color: Colors.white, child: const Text("       ",style: TextStyle(fontWeight: FontWeight.w500),))
           : null,
       chartValuesOptions: ChartValuesOptions(
         showChartValueBackground: true,

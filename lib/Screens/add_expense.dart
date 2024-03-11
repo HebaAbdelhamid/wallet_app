@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/screen/expense.dart';
+import 'package:wallet_app/widgets/categories.dart';
 
 class AddExpensesPage extends StatefulWidget {
   @override
@@ -250,7 +252,7 @@ class _AddExpensesPageState extends State<AddExpensesPage> {
               ),
               child: MaterialButton(minWidth: double.infinity,
                 onPressed: (){
-                  // Navigator.of(context).push( MaterialPageRoute(builder: (context){return Register_Complete();}));
+                  Navigator.of(context).push( MaterialPageRoute(builder: (context){return ExpensiveScreen(category: categories.first,);}));
                 },
                 padding: const EdgeInsets.only(right: 4,left: 4),
                 child: const Text('Save',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/Services/AddIfutureplaning.dart';
 import 'package:wallet_app/Services/AddIncome.dart';
 import 'package:wallet_app/data/model/modell/incomeModel.dart';
 
@@ -15,7 +16,7 @@ class AddfutureplaningScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           'Add future planing',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -62,21 +63,21 @@ class AddfutureplaningScreen extends StatelessWidget {
                     title: descriptionController.text,
                     cost: int.tryParse(costController.text) ?? 0,
                   );
-                  final incomeService = AddIncome();
+                  final incomeService = Addfutureplaning();
 
                   try {
                     // Call the postData method to send a POST request
                     await incomeService.postData(newIncome.title!, newIncome.cost!);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Income added successfully'),
+                        content: Text('I added successfully'),
                       ),
                     );
                     Navigator.pop(context, true);
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Failed to add income: $e'),
+                        content: Text('Failed to add future planning: $e'),
                       ),
                     );
                   }

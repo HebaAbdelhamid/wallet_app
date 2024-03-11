@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/model/modell/incomeModel.dart';
+import 'package:wallet_app/screen/expense.dart';
 import 'package:wallet_app/screen/incomes.dart';
 
 import '../widgets/categories.dart';
@@ -69,7 +70,7 @@ totalIncome=widget.total;
                           style: TextStyle(fontSize: 17),
                         ),
                         Text(
-                          ' ',
+                          'Mohamed Ahmed ',
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.w500),
                         )
@@ -161,30 +162,35 @@ totalIncome=widget.total;
                         ),
                       ),
                     ),
-                    Container(
-                      height: 110,
-                      width: 170,
-                      decoration: BoxDecoration(
-                          color: Color(0xffDBE7C9),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.upgrade_outlined,
-                            color: Colors.red,
-                            size: 33,
-                          ),
-                          Text(
-                            'Expenses',
-                            style: TextStyle(fontSize: 22),
-                          ),
-                          Text(
-                            '0 EGP',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        ],
+                    InkWell(
+                      onTap: (){
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ExpensiveScreen(category: categories.last,)));
+                      },
+                      child: Container(
+                        height: 110,
+                        width: 170,
+                        decoration: BoxDecoration(
+                            color: Color(0xffDBE7C9),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.upgrade_outlined,
+                              color: Colors.red,
+                              size: 33,
+                            ),
+                            Text(
+                              'Expenses',
+                              style: TextStyle(fontSize: 22),
+                            ),
+                            Text(
+                              '0 EGP',
+                              style: TextStyle(fontSize: 20),
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -219,7 +225,17 @@ totalIncome=widget.total;
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       itemBuilder: (context, index) =>
-                          CategoryWidget(category: categories[index]),
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(
+                                           context,
+                                            MaterialPageRoute(
+                                              builder: (context) => ExpensiveScreen(category: categories[index]),
+                                            ),
+                              );
+
+                            },
+                              child: CategoryWidget(category: categories[index])),
                       separatorBuilder: (context, index) => SizedBox(width: 10),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
@@ -243,6 +259,7 @@ class CategoryWidget extends StatelessWidget {
   final Category category;
   @override
   Widget build(BuildContext context) {
+    print(category.name);
     return Container(
       width: 120,
       decoration: BoxDecoration(

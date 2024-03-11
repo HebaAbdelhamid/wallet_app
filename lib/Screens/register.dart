@@ -220,7 +220,7 @@ class Register_State extends State<Register>{
                           TextFormField(
                             controller: _confirmpasswordTextEditingController,
                             keyboardType: TextInputType.text, // Use text keyboard type for passwords
-                            obscureText: !_passwordVisible,
+                            obscureText: !_passwordConfirm,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 10),
@@ -237,14 +237,14 @@ class Register_State extends State<Register>{
                                     color: Color(0xFF294B29),
                                   ),
                                   borderRadius: BorderRadius.circular(11)),
-                              labelText: 'Password',
+                              labelText: 'cPassword',
                               suffixIcon: IconButton(
-                                icon: Icon(_passwordVisible
+                                icon: Icon(_passwordConfirm
                                     ? Icons.visibility
                                     : Icons.visibility_off),
                                 onPressed: () {
                                   setState(() {
-                                    _passwordVisible = !_passwordVisible;
+                                    _passwordConfirm = !_passwordConfirm;
                                   });
                                 },
                               ),
@@ -318,7 +318,7 @@ class Register_State extends State<Register>{
                                   lastName: _lastnameTextEditingController.text,
                                   email: _emailTextEditingController.text,
                                   password: _passwordTextEditingController.text,
-                                  cPassword: _passwordTextEditingController.text,
+                                  cPassword: _confirmpasswordTextEditingController.text,
                                   dueDate: _dateTextEditingController.text,
                               );
 

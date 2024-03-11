@@ -21,21 +21,7 @@ class Register_Complete_State extends State<Register_Complete_> {
     super.initState();
 
   }
-//XFile?image;
-  /*Future<void> pickImage(ImageSource source,int index) async {
-    final picker = ImagePicker();
-    final pickedfile = await picker.pickImage(source: source);
-    setState(() {
-      if (pickedfile != null) {
-        File _imageFile = File(pickedfile.path,);
-        String imageName=pickedfile.path.split('/').last;
 
-
-      } else {
-        print('No image selected.');
-      }
-    });
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +116,19 @@ class Register_Complete_State extends State<Register_Complete_> {
                                   height: 4,
                                 ),
                                 TextField(
+                                  controller: _categorynameTextEditingController,
+                                 onSubmitted: (value){
+                                   setState(() {
+                                     print('===============$value');
+                                     categories
+                                         .add(Category(value!, 'images/1.jpg'));
+                                   });
+
+                                 },
                                   onTap: () {},
                                   keyboardType: TextInputType.name,
-                                  onSubmitted: (value) {
-                                    setState(() {
-                                      categories
-                                          .add(Category(value, 'images/1.jpg'));
-                                    });
-                                  },
+
+
                                   decoration: InputDecoration(
                                     contentPadding: const EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 10),
@@ -215,7 +206,7 @@ class Register_Complete_State extends State<Register_Complete_> {
                       SizedBox(
                         height: 4,
                       )),
-              InkWell(
+             /* InkWell(
                 onTap: () {
                   setState(() {
                     count++;
@@ -233,7 +224,7 @@ class Register_Complete_State extends State<Register_Complete_> {
                     ),
                   ],
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: 4,
               ),
@@ -247,9 +238,11 @@ class Register_Complete_State extends State<Register_Complete_> {
                   minWidth: double.infinity,
                   onPressed: () {
                     setState(() {
-                      categories.add(Category(
-                          _categorynameTextEditingController.text,
-                          'images/1.jpg'));
+                      setState(() {
+
+                        categories
+                            .add(Category(_categorynameTextEditingController.text, 'images/1.jpg'));
+                      });
                     });
 
                     Navigator.of(context)
