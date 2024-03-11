@@ -9,7 +9,7 @@ class Category {
 
 List<Category> categories = [];
 
-List images = ['1.jpg', '2.png', '3.png', '1.jpg', '2.png', '3.png'];
+List images = ['line-icon-for-category-vector.jpg', '2.png', '3.png', '1.jpg', '2.png', '3.png'];
 List text = [
   'Food & Drinks ',
   'Shopping',

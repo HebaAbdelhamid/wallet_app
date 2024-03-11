@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:wallet_app/Screens/category_chart.dart';
+import 'package:wallet_app/Services/income.dart';
+import 'package:wallet_app/data/model/modell/expensesmodel.dart';
 class Income_Chart extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -10,6 +12,10 @@ class Income_Chart extends StatefulWidget{
 }
 
 class Income_ChartState extends State<Income_Chart> {
+  GetIncome getExpense = GetIncome();
+  String categoryId = '65e781eb708e682e7263d7fc';
+  late List<Expense> expense;
+
   double _sliderValue = .7;
 
   List _slidersValue=[.7,.6,];
@@ -169,7 +175,7 @@ class Income_ChartState extends State<Income_Chart> {
               child: Text(_category[index]),
             ),
             Expanded(child: SizedBox()),
-            Text('${_slidersValue[index]*100}EGP'),
+            Text('${_slidersValue[index]*1000}EGP'),
           ],
         ),
         SizedBox(height: 7),

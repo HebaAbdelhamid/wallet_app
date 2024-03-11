@@ -241,7 +241,7 @@ class Register_Complete_State extends State<Register_Complete_> {
                       setState(() {
 
                         categories
-                            .add(Category(_categorynameTextEditingController.text, 'images/1.jpg'));
+                            .add(Category(_categorynameTextEditingController.text, 'images/line-icon-for-category-vector.jpg'));
                       });
                     });
 

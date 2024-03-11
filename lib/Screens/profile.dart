@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/Screens/edit_Account.dart';
 import 'package:wallet_app/Screens/login.dart';
 import 'package:wallet_app/data/remote/cache_helper.dart';
+import 'package:wallet_app/screen/splach.dart';
 
 class Profile extends StatefulWidget{
   @override
@@ -191,6 +192,7 @@ class Profile_State extends State<Profile>{
                         0xFF294B29),shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)) ),
                     onPressed: () {
                       CacheHelper.removeData(key: 'token').then((value) => Log_In());
+                     // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SplashScreen()),);
                     },
                     child: Text('Yes',style: TextStyle(color: Colors.white),),
                   ),

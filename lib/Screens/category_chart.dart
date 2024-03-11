@@ -197,7 +197,7 @@ List<String>_category=[ "Food & Drinks","Recycling","Tickets","Shopping"];
                           child: Text(_category[index]),
                         ),
                         Expanded(child: SizedBox()),
-                        Text('${_slidersValue[index]}EGP'),
+                        Text('${_slidersValue[index]*1000}EGP'),
                       ],
                     ),
                     SizedBox(height: 7),

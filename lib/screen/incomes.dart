@@ -18,7 +18,7 @@ class IncomesScreen extends StatefulWidget {
 }
 
 class _IncomesScreenState extends State<IncomesScreen> {
-  late int totalIncome;
+  late int totalIncome=0;
   final GetIncome _getIncomeService = GetIncome();
   final AddIncome _addIncomeService = AddIncome();
   final DeleteIncome _deleteIncomeService = DeleteIncome();

@@ -258,7 +258,7 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                                               setState(() {
                                                 categories.add(Category(
                                                     categoryNameController.text,
-                                                    'images/1.jpg'));
+                                                    'images/line-icon-for-category-vector.jpg'));
                                               });
                                               Navigator.pop(context);
                                               print(
