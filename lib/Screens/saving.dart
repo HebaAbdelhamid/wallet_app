@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/Screens/bills.dart';
 import 'package:wallet_app/screen/futureplanning.dart';
 
 class FuturePlanning extends StatefulWidget {
@@ -30,7 +31,7 @@ class _FuturePlanningState extends State<FuturePlanning> {
         children: [
           InkWell(
           onTap: (){
-   // Navigator.of(context).push(MaterialPageRoute(builder: (context){return Proadcast_Child();}));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context){return BillsScreen();}));
     },
       child: Stack(
         alignment: Alignment.center,
