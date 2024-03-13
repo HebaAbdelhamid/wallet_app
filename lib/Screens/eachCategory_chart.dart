@@ -66,8 +66,19 @@ class EachCategory_ChartState extends State<EachCategory_Chart> {
 
 
     return Scaffold(
-
-        body:SafeArea(
+appBar: AppBar(
+  backgroundColor: Colors.white,
+  elevation: 0,
+  leading:IconButton(
+    icon: Icon(Icons.arrow_back,color: Colors.black,),
+    onPressed: () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => ExpensiveScreen(category:categories.last)),
+      );
+    },
+  ),
+),
+        body:Container(
           child: FutureBuilder<List<Expense>>(
             future: getExpense.fetchExpenses(categoryId),
             builder: (context, snapshot) {
@@ -91,14 +102,7 @@ class EachCategory_ChartState extends State<EachCategory_Chart> {
                     children: [
                       Row(
                         children: [
-                          IconButton(
-                            icon: Icon(Icons.arrow_back),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (context) => ExpensiveScreen(category:categories.last)),
-                              );
-                            },
-                          ),
+
                           Container(
                             width: 100,
                             height: 40,
