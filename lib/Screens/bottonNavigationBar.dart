@@ -4,6 +4,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:wallet_app/Screens/add_expenses.dart';
 import 'package:wallet_app/Screens/category_chart.dart';
 import 'package:wallet_app/Screens/home.dart';
+import 'package:wallet_app/Screens/income_chart.dart';
 import 'package:wallet_app/Screens/profile.dart';
 import 'package:wallet_app/Screens/saving.dart';
 
@@ -20,7 +21,7 @@ class Botton_Navigation_State extends State<Botton_Navigation_Bar>{
   List<Widget> _buildScreens() {
     return [
       Home(0),
-      Category_Chart(),
+      Income_Chart(),
       AddExpensesPage_(),
       FuturePlanning(),
       Profile()

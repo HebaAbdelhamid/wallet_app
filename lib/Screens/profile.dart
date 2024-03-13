@@ -36,10 +36,10 @@ class Profile_State extends State<Profile>{
           Padding(
             padding: const EdgeInsets.symmetric(horizontal:150,vertical: 16),
             child: CircleAvatar( radius:40,backgroundImage: AssetImage('images/5-512.webp'),),),
-          Text("Mohamed Ahmed",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight:FontWeight.w500),),
+          Text("Username",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight:FontWeight.w500),),
           Padding(
             padding: const EdgeInsets.only(top:7.0,bottom: 17),
-            child: Text("mohamed00@gmail.com",style: TextStyle(color: Colors.black,fontSize: 16,),),
+            child: Text("*********@gmail.com",style: TextStyle(color: Colors.black,fontSize: 16,),),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 23.0,vertical: 13),
@@ -192,7 +192,7 @@ class Profile_State extends State<Profile>{
                         0xFF294B29),shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)) ),
                     onPressed: () {
                       CacheHelper.removeData(key: 'token').then((value) => Log_In());
-                     // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SplashScreen()),);
+                     // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Log_In()),);
                     },
                     child: Text('Yes',style: TextStyle(color: Colors.white),),
                   ),

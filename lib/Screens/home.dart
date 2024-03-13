@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/data/model/modell/incomeModel.dart';
 import 'package:wallet_app/screen/expense.dart';
 import 'package:wallet_app/screen/incomes.dart';
+import 'package:wallet_app/screen/notification.dart';
 
 import '../widgets/categories.dart';
 
@@ -70,7 +71,7 @@ totalIncome=widget.total;
                           style: TextStyle(fontSize: 17),
                         ),
                         Text(
-                          'Mohamed Ahmed ',
+                          'My friend',
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.w500),
                         )
@@ -88,7 +89,11 @@ totalIncome=widget.total;
                             size: 28,
                           ),
                           color: Colors.black,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) => NotificationScreen()),
+                            );
+                          },
                         )),
                   ],
                 ),
@@ -99,7 +104,14 @@ totalIncome=widget.total;
               Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),boxShadow: [
+                  BoxShadow(
+                    color: Colors.green.withOpacity(0.2), // Shadow color
+                    spreadRadius: 2,  // Spread radius
+                    blurRadius: 5,    // Blur radius
+                    offset: Offset(0, 3), // Offset from the container
+                  ),
+                ],),
                 height: 150,
                 width: double.infinity,
                 child: Column(
@@ -108,9 +120,9 @@ totalIncome=widget.total;
                       height: 30,
                     ),
                     Text(
-                      'Total Balance',
+                      'Total Income',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 27,
                       ),
                     ),
                     SizedBox(
@@ -135,12 +147,20 @@ totalIncome=widget.total;
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (context) => IncomesScreen()));
                         },
-                        child: Container(
+                        child:
+                        Container(
                           height: 110,
                           width: 170,
                           decoration: BoxDecoration(
                               color: Color(0xffDBE7C9),
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(20),boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2), // Shadow color
+                              spreadRadius: 2,  // Spread radius
+                              blurRadius: 7,    // Blur radius
+                              offset: Offset(0, 3), // Offset from the container
+                            ),
+                          ],),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -151,12 +171,12 @@ totalIncome=widget.total;
                               ),
                               const Text(
                                 'Incomes',
-                                style: TextStyle(fontSize: 22),
+                                style: TextStyle(fontSize: 24),
                               ),
-                              Text(
+                             /* Text(
                                 '${totalIncome} EGP',
                                 style: TextStyle(fontSize: 20),
-                              )
+                              )*/
                             ],
                           ),
                         ),
@@ -166,12 +186,20 @@ totalIncome=widget.total;
                       onTap: (){
                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ExpensiveScreen(category: categories.last,)));
                       },
-                      child: Container(
+                      child:
+                      Container(
                         height: 110,
                         width: 170,
                         decoration: BoxDecoration(
                             color: Color(0xffDBE7C9),
-                            borderRadius: BorderRadius.circular(20)),
+                            borderRadius: BorderRadius.circular(20),boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2), // Shadow color
+                            spreadRadius: 2,  // Spread radius
+                            blurRadius: 7,    // Blur radius
+                            offset: Offset(0, 3), // Offset from the container
+                          ),
+                        ],),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -185,10 +213,10 @@ totalIncome=widget.total;
                               'Expenses',
                               style: TextStyle(fontSize: 22),
                             ),
-                            Text(
+                           /* Text(
                               '0 EGP',
                               style: TextStyle(fontSize: 20),
-                            )
+                            )*/
                           ],
                         ),
                       ),

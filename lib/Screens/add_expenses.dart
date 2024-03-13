@@ -53,7 +53,7 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
               SizedBox(
                 height: 40,
               ),
-              Text(
+              /*Text(
                 'Choose category',
                 style: TextStyle(fontSize: 24),
               ),
@@ -83,7 +83,7 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                     });
                   },
                 ),
-              ),
+              ),*/
               Text(
                 'Enter Description ',
                 style: TextStyle(fontSize: 24),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:wallet_app/Screens/income_chart.dart';
+import 'package:wallet_app/widgets/categories.dart';
 class Category_Chart extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -10,6 +11,7 @@ class Category_Chart extends StatefulWidget{
 }
 
 class Category_ChartState extends State<Category_Chart> {
+
   double _sliderValue = .7;
   final dataMap = <String, double>{
     "Food & Drinks":5,
@@ -45,6 +47,7 @@ List<String>_category=[ "Food & Drinks","Recycling","Tickets","Shopping"];
 
   @override
   Widget build(BuildContext context) {
+
     final chart = PieChart(
       key: ValueKey(key),
       dataMap: {
@@ -79,9 +82,9 @@ List<String>_category=[ "Food & Drinks","Recycling","Tickets","Shopping"];
     );
 
 
-
     return Scaffold(
-      body:SafeArea(
+
+        body:SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 18),

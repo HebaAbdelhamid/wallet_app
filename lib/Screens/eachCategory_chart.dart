@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:wallet_app/Screens/income_chart.dart';
 import 'package:wallet_app/Services/getExpen.dart';
 import 'package:wallet_app/data/model/modell/expensesmodel.dart';
+import 'package:wallet_app/screen/expense.dart';
+import 'package:wallet_app/widgets/categories.dart';
 class EachCategory_Chart extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -22,9 +25,9 @@ class EachCategory_ChartState extends State<EachCategory_Chart> {
 
   double _sliderValue = .7;
   final dataMap = <String, double>{
-    "Pizza":5,
-    "Fish": 3,
-    "Orange": 2,
+    "default1":5,
+    "default2": 3,
+    "default3": 2,
 
   };
   List _slidersValue=[.7,.6,.5,.7,.7,.6,.5,.7];
@@ -34,10 +37,7 @@ class EachCategory_ChartState extends State<EachCategory_Chart> {
     const Color(0xFF294B29),
     const Color(0xff088718),
     const Color(0xfffd79a8),
-    const Color(0xFF294B29),
-    const Color(0xff088718),
-    const Color(0xfffd79a8),
-
+    const Color(0xffe17055),
 
   ];
   final colorList_ = <Color>[
@@ -66,12 +66,16 @@ class EachCategory_ChartState extends State<EachCategory_Chart> {
 
 
     return Scaffold(
+
         body:SafeArea(
           child: FutureBuilder<List<Expense>>(
             future: getExpense.fetchExpenses(categoryId),
             builder: (context, snapshot) {
               if(!snapshot.hasData){
                 return Center(child: CircularProgressIndicator());
+              }
+              else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Center(child: Text('No expenses found, Add it t view it in chart.'));
               }
               Map<String, double> expenseMap = Map.fromIterable(
                 snapshot.data!.toList() ,
@@ -87,6 +91,14 @@ class EachCategory_ChartState extends State<EachCategory_Chart> {
                     children: [
                       Row(
                         children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => ExpensiveScreen(category:categories.last)),
+                              );
+                            },
+                          ),
                           Container(
                             width: 100,
                             height: 40,
@@ -189,7 +201,7 @@ class EachCategory_ChartState extends State<EachCategory_Chart> {
                             return buildColumnategorySlider(index);
                           }, separatorBuilder: (BuildContext context,int){
                         return SizedBox(height: 7,);
-                      }, itemCount: colorList.length)
+                      }, itemCount: snapshot.data!.length)
 
 
 
@@ -246,8 +258,8 @@ mainAxisSize: MainAxisSize.min,
         ),
         SizedBox(height: 7),
         Slider(
-            activeColor:Colors.green ,
-            inactiveColor:Colors.white ,
+            activeColor:colorList[index] ,
+            inactiveColor:colorList_[index] ,
             value: _slidersValue[index],
             onChanged: (value) {
               setState(() {
