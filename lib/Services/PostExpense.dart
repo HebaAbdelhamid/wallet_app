@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:wallet_app/data/remote/cache_helper.dart';
 
 class AddExpense {
   final Dio _dio = Dio();
@@ -9,10 +12,9 @@ class AddExpense {
     required String description,
     required int amount,
   }) async {
-    final String apiUrl =
+    const String apiUrl =
         'https://walletapp-cr96.onrender.com/api/v1/expense/addExpense';
-    final String token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0xvZ2luIjp0cnVlLCJpZCI6IjY1ZTc3ZGZjMWM0YTE1YWU3YzIwNTZkNiIsImlhdCI6MTcwOTY3MDg0MX0.3ZBzxdpn25FMJTizPCF3V-gb4vuOT6-vqwup1i0bl5A';
+    final String token = CacheHelper.getData(key: 'tokenn');
 
     try {
       final response = await _dio.post(
@@ -31,7 +33,7 @@ class AddExpense {
       );
 
       if (response.statusCode == 200) {
-        // Expense added successfully
+        log(response.data.toString(), name: "AddExpense");
       } else {
         throw Exception('Failed to add expense');
       }

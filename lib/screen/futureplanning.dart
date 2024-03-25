@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/Screens/bottonNavigationBar.dart';
 import 'package:wallet_app/Screens/home.dart';
 import 'package:wallet_app/Screens/saving.dart';
 import 'package:wallet_app/Services/AddIfutureplaning.dart';
@@ -89,7 +90,7 @@ class _futureplaningScreenState extends State<futureplaningScreen> {
         leading: IconButton(icon:Icon(Icons.arrow_back), color: Colors.black,
           onPressed: (){
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => FuturePlanning()),
+              MaterialPageRoute(builder: (context) => Botton_Navigation_Bar()),
             );
           },),
       ),

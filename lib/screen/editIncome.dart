@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:wallet_app/Services/updateincome.dart';
-
-
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:wallet_app/Services/updateincome.dart';
 import 'package:wallet_app/data/model/modell/incomeModel.dart';
 
 class EditIncomeScreen extends StatefulWidget {
   final IncomeModel income;
   final StreamController<IncomeModel> incomeController;
 
-  const EditIncomeScreen({required this.income, required this.incomeController});
+  const EditIncomeScreen(
+      {required this.income, required this.incomeController});
 
   @override
   _EditIncomeScreenState createState() => _EditIncomeScreenState();
@@ -37,10 +36,13 @@ class _EditIncomeScreenState extends State<EditIncomeScreen> {
         centerTitle: true,
         title: Text(
           'Edit',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back,color: Colors.black,),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -86,7 +88,8 @@ class _EditIncomeScreenState extends State<EditIncomeScreen> {
 
                   try {
                     // Call the updateData method to send a PUT request
-                    await UpdateIncome().updateData(widget.income.sId ?? '', title, cost);
+                    await UpdateIncome()
+                        .updateData(widget.income.sId ?? '', title, cost);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Income updated successfully'),
@@ -107,7 +110,7 @@ class _EditIncomeScreenState extends State<EditIncomeScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF294B29),
+                  backgroundColor: Color(0xFF294B29),
                   minimumSize: Size(200, 60),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

@@ -32,4 +32,11 @@ class CacheHelper{
 }) async {
     return await sharedPreferences!.remove(key);
   }
+  static bool? getOnboardingStatus() {
+    return sharedPreferences!.getBool('onboarding_completed');
+  }
+
+  static Future<void> setOnboardingStatus(bool value) async {
+    await sharedPreferences!.setBool('onboarding_completed', value);
+  }
 }

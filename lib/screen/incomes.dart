@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/Screens/bottonNavigationBar.dart';
 import 'package:wallet_app/Screens/home.dart';
 import 'package:wallet_app/Services/AddIncome.dart';
 import 'package:wallet_app/Services/deleteincome.dart';
@@ -73,7 +74,7 @@ class _IncomesScreenState extends State<IncomesScreen> {
       );
     }
   }
-  int _calculateTotalIncome() {
+  int calculateTotalIncome() {
      totalIncome = incomes.fold(
         0, (previousValue, element) => previousValue + (element.cost ?? 0));
 
@@ -95,7 +96,7 @@ print(totalIncome);
         ),
         leading: IconButton(icon:Icon(Icons.arrow_back), color: Colors.black,
           onPressed: (){
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home(totalIncome)),);
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Botton_Navigation_Bar()),);
           },),
       ),
       body: incomes.isEmpty
@@ -208,7 +209,7 @@ print(totalIncome);
                               Container(
                                 child: Center(
                                   child: Text(
-                                    "${_calculateTotalIncome()} EGP",
+                                    "${calculateTotalIncome()} EGP",
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:wallet_app/Screens/bottonNavigationBar.dart';
 import 'package:wallet_app/Screens/home.dart';
+import 'package:wallet_app/data/remote/cache_helper.dart';
 
 // Define a model for notifications
 class NotificationModel {
@@ -51,7 +52,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   // Method to fetch data from APIs
   Future<void> fetchDataAndShowNotification() async {
-    final String userId = "65e77dfc1c4a15ae7c2056d6";
+    //final String userId = "65e77dfc1c4a15ae7c2056d6";
+    final String userId=CacheHelper.getData(key: 'id');
+
     final String expensesApiUrl =
         "https://walletapp-cr96.onrender.com/api/v1/user/expenses";
     final String incomesApiUrl =
@@ -59,8 +62,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
     final String salaryRestApiUrl =
         "https://walletapp-cr96.onrender.com/api/v1/salary/salaryRest";
 
-    final String token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0xvZ2luIjp0cnVlLCJpZCI6IjY1ZTc3ZGZjMWM0YTE1YWU3YzIwNTZkNiIsImlhdCI6MTcwOTkwMjE5NH0.tlhg5YeQ-EVv-cb-Z5sjPBQCRwxmwLKlXrE7ZGThLOY";
+    // final String token =
+    //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0xvZ2luIjp0cnVlLCJpZCI6IjY1ZTc3ZGZjMWM0YTE1YWU3YzIwNTZkNiIsImlhdCI6MTcwOTkwMjE5NH0.tlhg5YeQ-EVv-cb-Z5sjPBQCRwxmwLKlXrE7ZGThLOY";
+    final String token = CacheHelper.getData(key: 'tokenn');
 
     try {
       // Fetch expenses
@@ -133,7 +137,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           icon: Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => Home(0)),
+              MaterialPageRoute(builder: (context) => Botton_Navigation_Bar()),
             );
           },
         ),

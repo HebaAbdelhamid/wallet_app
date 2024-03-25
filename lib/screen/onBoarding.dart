@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet_app/data/remote/cache_helper.dart';
 import 'welcom.dart'; // Import your Welcome screen file
 
 class OnboardingScreens extends StatefulWidget {
@@ -102,14 +103,23 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        //elevation: 0,
+        elevation: 0,
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Welcome()),
-              );
+            onPressed: () async{
+      if (currentIndex == 1) {
+        // If it's the last onboarding screen, mark onboarding as completed
+        await CacheHelper.setOnboardingStatus(true);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Welcome()),
+        );
+      }else{
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Welcome()),
+        );
+      }
             },
             child: const Text(
               'Skip',
@@ -122,6 +132,8 @@ class OnboardingScreen extends StatelessWidget {
         ],
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             imagePath,

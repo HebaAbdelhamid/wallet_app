@@ -1,8 +1,6 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:wallet_app/Screens/bottonNavigationBar.dart';
-import 'package:wallet_app/widgets/categories.dart';
+import 'package:wallet_app/Screens/login.dart';
+import 'package:wallet_app/dio/category/addcategory.dart';
 
 class Register_Complete_ extends StatefulWidget {
   @override
@@ -15,13 +13,13 @@ class Register_Complete_State extends State<Register_Complete_> {
   TextEditingController _salaryTextEditingController = TextEditingController();
   TextEditingController _categorynameTextEditingController =
       TextEditingController();
+  final AddCategory addcategory__ = AddCategory();
+
 
   int count = 1;
   void initState() {
     super.initState();
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -116,19 +114,20 @@ class Register_Complete_State extends State<Register_Complete_> {
                                   height: 4,
                                 ),
                                 TextField(
-                                  controller: _categorynameTextEditingController,
-                                 onSubmitted: (value){
-                                   setState(() {
-                                     print('===============$value');
-                                     categories
-                                         .add(Category(value!, 'images/1.jpg'));
-                                   });
-
-                                 },
+                                  controller:
+                                      _categorynameTextEditingController,
+                                  onSubmitted: (value) {
+                                    addcategory__.postCategory(
+                                        _categorynameTextEditingController
+                                            .text);
+                                    // setState(() {
+                                    //   print('===============$value');
+                                    //   categories
+                                    //       .add(Category(value!, 'images/1.jpg'));
+                                    // });
+                                  },
                                   onTap: () {},
                                   keyboardType: TextInputType.name,
-
-
                                   decoration: InputDecoration(
                                     contentPadding: const EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 10),
@@ -155,7 +154,7 @@ class Register_Complete_State extends State<Register_Complete_> {
                                 SizedBox(
                                   height: 7,
                                 ),
-                                Text(
+                               /* Text(
                                   'Upload related image to this category',
                                   style: TextStyle(fontSize: 17),
                                 ),
@@ -163,35 +162,34 @@ class Register_Complete_State extends State<Register_Complete_> {
                                   height: 4,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 4.0, bottom: 4),
-                                  child:
-
-                                  InkWell(
-                                    onTap: (){
-                                   //   pickImage(ImageSource.gallery, 1);
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.grey[200],
-                                        border: Border.all(color: Color(0xFF294B29)),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 7),
-                                        child: Row(
-                                          children: [
-                                            Text('Upload Image'),
-                                            Expanded(child: SizedBox()),
-                                            Icon(Icons.upload),
-
-                                          ],
+                                    padding: const EdgeInsets.only(
+                                        top: 4.0, bottom: 4),
+                                    child: InkWell(
+                                      onTap: () {
+                                        //   pickImage(ImageSource.gallery, 1);
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.grey[200],
+                                          border: Border.all(
+                                              color: Color(0xFF294B29)),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 4, horizontal: 7),
+                                          child: Row(
+                                            children: [
+                                              Text('Upload Image'),
+                                              Expanded(child: SizedBox()),
+                                              Icon(Icons.upload),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  )
-                                ),
+                                    )),*/
                               ],
                             ),
                           ),
@@ -206,7 +204,7 @@ class Register_Complete_State extends State<Register_Complete_> {
                       SizedBox(
                         height: 4,
                       )),
-             /* InkWell(
+              /* InkWell(
                 onTap: () {
                   setState(() {
                     count++;
@@ -237,17 +235,15 @@ class Register_Complete_State extends State<Register_Complete_> {
                 child: MaterialButton(
                   minWidth: double.infinity,
                   onPressed: () {
-                    setState(() {
-                      setState(() {
-
-                        categories
-                            .add(Category(_categorynameTextEditingController.text, 'images/line-icon-for-category-vector.jpg'));
-                      });
-                    });
-
+                     setState(() {
+                       addcategory__.postCategory(
+                           _categorynameTextEditingController
+                               .text);
+                    //   categories.add(Category(_categorynameTextEditingController.text, 'images/line-icon-for-category-vector.jpg'));
+                     });
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return Botton_Navigation_Bar();
+                      return Log_In();
                     }));
                   },
                   padding: EdgeInsets.only(right: 4, left: 4),

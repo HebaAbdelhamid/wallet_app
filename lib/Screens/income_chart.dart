@@ -7,7 +7,6 @@ import 'package:wallet_app/Services/income.dart';
 import 'package:wallet_app/data/model/modell/incomeModel.dart';
 import 'package:wallet_app/screen/expense.dart';
 import 'package:wallet_app/screen/incomes.dart';
-import 'package:wallet_app/widgets/categories.dart';
 class Income_Chart extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -83,14 +82,14 @@ class Income_ChartState extends State<Income_Chart> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          IconButton(
-                            icon: Icon(Icons.arrow_back),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (context) => EachCategory_Chart()),
-                              );
-                            },
-                          ),
+                          // IconButton(
+                          //   icon: Icon(Icons.arrow_back),
+                          //   onPressed: () {
+                          //     Navigator.of(context).pushReplacement(
+                          //       MaterialPageRoute(builder: (context) => EachCategory_Chart()),
+                          //     );
+                          //   },
+                          // ),
                           InkWell(
                             onTap: (){
 

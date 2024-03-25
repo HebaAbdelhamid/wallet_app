@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:wallet_app/data/remote/cache_helper.dart';
 
 class Addfutureplaning {
   final Dio _dio = Dio();
 
   Future<void> postData(String title, int cost) async {
+    final String apitoken=CacheHelper.getData(key: 'id');
+
     try {
       // Define the data to be sent in the request body
       Map<String, dynamic> data = {
@@ -13,7 +16,7 @@ class Addfutureplaning {
 
       // Send a POST request with the data to the specified URL
       Response response = await _dio.post(
-        'https://walletapp-cr96.onrender.com/api/v1/saving/futureplans/65e77dfc1c4a15ae7c2056d6',
+        'https://walletapp-cr96.onrender.com/api/v1/saving/futureplans/$apitoken',
         data: data,
       );
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/Screens/bottonNavigationBar.dart';
 import 'package:wallet_app/cubit/login_cubit.dart';
 import 'package:wallet_app/data/remote/cache_helper.dart';
+import 'package:wallet_app/screen/welcom.dart';
 
 class Log_In extends StatefulWidget {
   const Log_In({super.key});
@@ -30,11 +31,11 @@ class Log_In_State extends State<Log_In> {
         listener: (context, state) {
           if (state is LoginSuccessState) {
             print(state.user.token);
-            CacheHelper.saveData(key: 'token', value: state.user.token);
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => Botton_Navigation_Bar()),
             );
-          } else if (state is LoginErrorState) {
+          }
+          else if (state is LoginErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text("Invalid Credentials Try again"),
@@ -57,7 +58,11 @@ class Log_In_State extends State<Log_In> {
                       Padding(
                         padding: const EdgeInsets.only(top: 9),
                         child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => Welcome()),
+                              );
+                            },
                             icon: const Icon(
                               Icons.arrow_back_ios_sharp,
                               color: Color(0xFF294B29),
@@ -179,8 +184,7 @@ class Log_In_State extends State<Log_In> {
                               child: MaterialButton(
                                 minWidth: double.infinity,
                                 onPressed: () {
-                                  print(
-                                      'email =====${_emailTextEditingController.text}=====');
+
 
                                   if (_formKey.currentState?.validate() ??
                                       false) {

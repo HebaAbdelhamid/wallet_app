@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/Services/AddIfutureplaning.dart';
-import 'package:wallet_app/Services/AddIncome.dart';
 import 'package:wallet_app/data/model/modell/incomeModel.dart';
-
 
 class AddfutureplaningScreen extends StatelessWidget {
   final TextEditingController descriptionController = TextEditingController();
@@ -13,13 +11,17 @@ class AddfutureplaningScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        centerTitle: true,
         elevation: 0,
         title: Text(
           'Add future planing',
-          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back,color: Colors.black,),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -67,7 +69,8 @@ class AddfutureplaningScreen extends StatelessWidget {
 
                   try {
                     // Call the postData method to send a POST request
-                    await incomeService.postData(newIncome.title!, newIncome.cost!);
+                    await incomeService.postData(
+                        newIncome.title!, newIncome.cost!);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('I added successfully'),
@@ -83,7 +86,9 @@ class AddfutureplaningScreen extends StatelessWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF294B29),
+                  backgroundColor:Color(0xFF294B29) ,
+
+
                   minimumSize: Size(200, 60),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

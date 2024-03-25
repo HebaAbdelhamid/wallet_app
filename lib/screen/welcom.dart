@@ -29,16 +29,20 @@ class Welcome extends StatelessWidget {
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                  Navigator.of(context).push( MaterialPageRoute(builder: (context){return Log_In();}));
-
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return Log_In();
+                }));
               },
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xFF294B29), // Background color for Login button
-                onPrimary: Colors.white, // Text color for Login button
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+                backgroundColor: Color(0xFF294B29),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: const BorderSide(width: 2, color: Color(0xFF294B29)), // Border color and width
+                  side: const BorderSide(
+                      width: 2,
+                      color: Color(0xFF294B29)), // Border color and width
                 ),
                 minimumSize: const Size(200, 0), // Fixed width
               ),
@@ -47,20 +51,24 @@ class Welcome extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                   Navigator.of(context).push( MaterialPageRoute(builder: (context){return Register();}));
-
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return Register();
+                }));
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.white, // Background color for Sign Up button
-                onPrimary: const Color(0xFF294B29), // Text color for Sign Up button
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+                backgroundColor: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: const BorderSide(width: 2, color: Color(0xFF294B29)), // Border color and width
+                  side: const BorderSide(
+                      width: 2,
+                      color: Color(0xFF294B29)), // Border color and width
                 ),
                 minimumSize: const Size(200, 0), // Fixed width
               ),
-              child: const Text('Sign Up'),
+              child: const Text('Sign Up',style: TextStyle(color: Color(0xFF294B29)),),
             ),
           ],
         ),

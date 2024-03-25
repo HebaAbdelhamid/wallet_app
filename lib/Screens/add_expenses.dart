@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_app/screen/expense.dart';
-import 'package:wallet_app/widgets/categories.dart';
+import 'package:wallet_app/Screens/bottonNavigationBar.dart';
+import 'package:wallet_app/dio/category/addcategory.dart';
 
 class AddExpensesPage_ extends StatefulWidget {
   @override
@@ -8,15 +8,11 @@ class AddExpensesPage_ extends StatefulWidget {
 }
 
 class _AddExpensesPageState extends State<AddExpensesPage_> {
-  late TimeOfDay _time;
-  String _category = 'Food & Drinks';
-  //eman
+  final AddCategory addcategory__ = AddCategory();
+
   late TextEditingController _descriptionController;
   late TextEditingController _costController;
-  String _description = '';
-  late double _cost;
-  bool _addToRedFlags = false;
-  //eman
+
   @override
   void initState() {
     super.initState();
@@ -53,37 +49,6 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
               SizedBox(
                 height: 40,
               ),
-              /*Text(
-                'Choose category',
-                style: TextStyle(fontSize: 24),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 18.0),
-                child: DropdownButton<String>(
-                  value: _category,
-                  isExpanded: true,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text('Food & Drinks'),
-                      value: 'Food & Drinks',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('Electronics'),
-                      value: 'Electronics',
-                    ),
-                    // Add more items as needed
-                    DropdownMenuItem(
-                      child: Text('Clothing'),
-                      value: 'Clothing',
-                    ),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      _category = value!;
-                    });
-                  },
-                ),
-              ),*/
               Text(
                 'Enter Description ',
                 style: TextStyle(fontSize: 24),
@@ -149,18 +114,6 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                       labelText: 'Enter Cost'),
                 ),
               ),
-              /*CheckboxListTile(
-                title: Text(
-                  'Add to Red flags?',
-                  style: TextStyle(fontSize: 20),
-                ),
-                value: _addToRedFlags,
-                onChanged: (value) {
-                  setState(() {
-                    _addToRedFlags = value!;
-                  });
-                },
-              ),*/
               Center(
                 child: TextButton(
                     onPressed: () {
@@ -214,7 +167,7 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                                               labelText: 'Enter Category Name'),
                                         ),
                                       ),
-                                      Padding(
+                                     /* Padding(
                                         padding: const EdgeInsets.only(
                                             top: 4.0, bottom: 4),
                                         child: Container(
@@ -241,7 +194,7 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      ),*/
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 4.0),
@@ -256,17 +209,22 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                                             minWidth: double.infinity,
                                             onPressed: () {
                                               setState(() {
-                                                categories.add(Category(
-                                                    categoryNameController.text,
-                                                    'images/line-icon-for-category-vector.jpg'));
+                                                addcategory__.postCategory(
+                                                    categoryNameController
+                                                        .text);
                                               });
-                                              Navigator.pop(context);
-                                              print(
-                                                  "Category Name: ${categoryNameController.text}");
-                                              print(
-                                                  "Description: ${descriptionController.text}");
-                                              print(
-                                                  "Cost: ${costController.text}");
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Botton_Navigation_Bar()),
+                                              );
+                                              // print(
+                                              //     "Category Name: ${categoryNameController.text}");
+                                              // print(
+                                              //     "Description: ${descriptionController.text}");
+                                              // print(
+                                              //     "Cost: ${costController.text}");
                                             },
                                             padding: const EdgeInsets.only(
                                                 right: 4, left: 4),
@@ -317,9 +275,12 @@ class _AddExpensesPageState extends State<AddExpensesPage_> {
                     onPressed: () {
                       print("Description: ${_descriptionController.text}");
                       print("Cost: ${_costController.text}");
-                      // Navigator.of(context).push( MaterialPageRoute(builder: (context){return Register_Complete();}));
-                      Navigator.of(context).push( MaterialPageRoute(builder: (context){return ExpensiveScreen(category: categories.first,);}));
-
+                      // Navigator.of(context)
+                      //     .push(MaterialPageRoute(builder: (context) {
+                      //   return ExpensiveScreen(
+                      //     id: ,
+                      //   );
+                      // }));
                     },
                     padding: const EdgeInsets.only(right: 4, left: 4),
                     child: const Text(

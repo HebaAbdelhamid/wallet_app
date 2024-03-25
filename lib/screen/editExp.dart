@@ -44,7 +44,7 @@ class _EditExpenseScreenState extends State<EditExpenseScreen> {
           style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () {
             Navigator.pop(context);
           },

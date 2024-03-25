@@ -7,11 +7,15 @@ class AddBillsScreen extends StatelessWidget {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController costController = TextEditingController();
 
+  AddBillsScreen({super.key,});
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        centerTitle: true,
         elevation: 0,
         title: Text(
           'Bills',

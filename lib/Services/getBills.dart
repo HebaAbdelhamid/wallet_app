@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:wallet_app/data/model/modell/billsModell.dart';
+import 'package:wallet_app/data/remote/cache_helper.dart';
 
 
 class GetBills {
   final Dio _dio = Dio();
 
   Future<List<BillsModel>> fetchData() async {
+    final String apitoken=CacheHelper.getData(key: 'id');
+
     try {
-      Response response = await _dio.get('https://walletapp-cr96.onrender.com/api/v1/saving/bills/65e77dfc1c4a15ae7c2056d6');
+      Response response = await _dio.get('https://walletapp-cr96.onrender.com/api/v1/saving/bills/$apitoken');
 
       if (response.statusCode == 200) {
         // Parse the response data into a list of IncomeModel objects

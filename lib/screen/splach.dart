@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wallet_app/data/remote/cache_helper.dart';
 import 'package:wallet_app/screen/onBoarding.dart';
+import 'package:wallet_app/screen/welcom.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -17,10 +19,19 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
       const Duration(seconds: 3),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const OnboardingScreens()),
-      ),
+      () {
+        if(CacheHelper.getOnboardingStatus()==true) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const Welcome()),
+          );
+        }else{
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const OnboardingScreens()),
+          );
+        }
+      }
     );
   }
 

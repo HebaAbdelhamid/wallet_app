@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:wallet_app/data/remote/cache_helper.dart';
 
 class DeleteBills {
   final Dio _dio = Dio();
 
   Future<void> deleteData(String billsId) async {
+    final String apitoken=CacheHelper.getData(key: 'id');
+
     try {
       // Send a DELETE request to the specified URL
       Response response = await _dio.delete(       
-        'https://walletapp-cr96.onrender.com/api/v1/saving/bills/65e77dfc1c4a15ae7c2056d6/$billsId',
+        'https://walletapp-cr96.onrender.com/api/v1/saving/bills/$apitoken/$billsId',
       );
 
       if (response.statusCode == 200) {

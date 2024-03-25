@@ -70,7 +70,7 @@ class SavedUser {
     return data;
   }
 }*/
-class RegisterModel {
+/*class RegisterModel {
   String? message;
   SavedUser? savedUser;
 
@@ -145,6 +145,74 @@ data['cPassword']=this.cPassword;
     data['_id'] = this.sId;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
+    data['__v'] = this.iV;
+    return data;
+  }
+}*/
+class RegisterModel {
+  SavedUser? savedUser;
+
+  RegisterModel({ this.savedUser});
+
+  RegisterModel.fromJson(Map<String, dynamic> json) {
+    savedUser = json['savedUser'] != null
+        ? new SavedUser.fromJson(json['savedUser'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.savedUser != null) {
+      data['savedUser'] = this.savedUser!.toJson();
+    }
+    return data;
+  }
+}
+
+class SavedUser {
+  String? firstName;
+  String? lastName;
+  String? email;
+  String? password;
+  String? cPassword;
+  String? profilePic;
+  String? dueDate;
+  String? sId;
+  int? iV;
+
+  SavedUser(
+      {this.firstName,
+        this.lastName,
+        this.email,
+        this.password,
+        this.cPassword,
+        this.profilePic,
+        this.dueDate,
+        this.sId,
+        this.iV});
+
+  SavedUser.fromJson(Map<String, dynamic> json) {
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    email = json['email'];
+    password = json['password'];
+    cPassword = json['cPassword'];
+    profilePic = json['profilePic'];
+    dueDate = json['dueDate'];
+    sId = json['_id'];
+    iV = json['__v'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['firstName'] = this.firstName;
+    data['lastName'] = this.lastName;
+    data['email'] = this.email;
+    data['password'] = this.password;
+    data['cPassword'] = this.cPassword;
+    data['profilePic'] = this.profilePic;
+    data['dueDate'] = this.dueDate;
+    data['_id'] = this.sId;
     data['__v'] = this.iV;
     return data;
   }

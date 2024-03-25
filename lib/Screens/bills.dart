@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:wallet_app/Screens/addBills.dart';
+import 'package:wallet_app/Screens/bottonNavigationBar.dart';
 import 'package:wallet_app/Screens/saving.dart';
 import 'package:wallet_app/Screens/updateBills.dart';
 import 'package:wallet_app/Services/addBills.dart';
@@ -87,7 +88,7 @@ class _BillsScreenState extends State<BillsScreen> {
         icon: Icon(Icons.arrow_back,color: Colors.black,),
         onPressed: () {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => FuturePlanning()),
+            MaterialPageRoute(builder: (context) => Botton_Navigation_Bar()),
           );        },),
       ),
       body: Bills.isEmpty

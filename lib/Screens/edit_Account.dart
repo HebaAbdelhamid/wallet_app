@@ -32,7 +32,7 @@ class Edit_Account_State extends State<Edit_Account>{
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:150,vertical: 25),
               child: Stack(
-                  children:[ CircleAvatar( radius:40,backgroundImage: AssetImage('images/1-intro-photo-final.jpg'),),
+                  children:[ CircleAvatar( radius:40,backgroundImage: AssetImage('images/5-512.webp'),),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 48.0,vertical: 35),
                     child: IconButton(onPressed: (){}, icon: Icon(Icons.add_a_photo_outlined)),

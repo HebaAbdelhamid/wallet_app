@@ -1,19 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:wallet_app/Services/updatefutureplaing.dart';
-
-
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:wallet_app/Services/updatefutureplaing.dart';
 import 'package:wallet_app/data/model/modell/incomeModel.dart';
 
 class EditfutureplaningScreen extends StatefulWidget {
   final IncomeModel income;
   final StreamController<IncomeModel> futureplaningController;
 
-  const EditfutureplaningScreen({required this.income,  required this.futureplaningController});
+  const EditfutureplaningScreen(
+      {required this.income, required this.futureplaningController});
 
   @override
-  _EditfutureplaningScreenState createState() => _EditfutureplaningScreenState();
+  _EditfutureplaningScreenState createState() =>
+      _EditfutureplaningScreenState();
 }
 
 class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
@@ -37,10 +37,10 @@ class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
         centerTitle: true,
         title: Text(
           'Edit',
-          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -86,7 +86,8 @@ class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
 
                   try {
                     // Call the updateData method to send a PUT request
-                    await UpdateIncome().updateData(widget.income.sId ?? '', title, cost);
+                    await UpdateIncome()
+                        .updateData(widget.income.sId ?? '', title, cost);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('future planing updated successfully'),
@@ -107,7 +108,7 @@ class _EditfutureplaningScreenState extends State<EditfutureplaningScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF294B29),
+                  backgroundColor: Color(0xFF294B29),
                   minimumSize: Size(200, 60),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

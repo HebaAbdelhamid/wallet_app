@@ -11,13 +11,14 @@ class AddIncomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        centerTitle: true,
         elevation: 0,
         title: Text(
           'Add Incomes',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -65,7 +66,8 @@ class AddIncomeScreen extends StatelessWidget {
 
                   try {
                     // Call the postData method to send a POST request
-                    await incomeService.postData(newIncome.title!, newIncome.cost!);
+                    await incomeService.postData(
+                        newIncome.title!, newIncome.cost!);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Income added successfully'),
@@ -81,7 +83,7 @@ class AddIncomeScreen extends StatelessWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF294B29),
+                  backgroundColor: Color(0xFF294B29),
                   minimumSize: Size(200, 60),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

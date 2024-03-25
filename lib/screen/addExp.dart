@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/Services/PostExpense.dart';
 
-
 class AddExpensiveScreen extends StatelessWidget {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController costController = TextEditingController();
-  final Function refreshExpenses; // Function to refresh expenses
-  final String categoryId; // Category ID
+  final Function refreshExpenses;
+  final String categoryId;
+  final String userId;
 
   final AddExpense addExpenseService = AddExpense();
 
-  AddExpensiveScreen({required this.refreshExpenses, required this.categoryId});
+  AddExpensiveScreen(
+      {required this.refreshExpenses,
+      required this.categoryId,
+      required this.userId});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +24,10 @@ class AddExpensiveScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'Add ',
-          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.black,),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -63,16 +66,16 @@ class AddExpensiveScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
+
                 onPressed: () async {
                   try {
                     await addExpenseService.addExpense(
-                      userId: '65e77dfc1c4a15ae7c2056d6',
-                      categoryId: categoryId, // Use the provided category ID
+                      userId: userId,
+                      categoryId: categoryId,
                       description: descriptionController.text,
                       amount: int.tryParse(costController.text) ?? 0,
                     );
-                    refreshExpenses(
-                        categoryId); // Refresh expenses after adding
+                    refreshExpenses(categoryId);
                     Navigator.pop(context);
                   } catch (e) {
                     print('Failed to add expense: $e');
